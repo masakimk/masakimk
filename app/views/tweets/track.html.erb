@@ -1,0 +1,7 @@
+<h1>コース</h1>
+
+<% @tweets.each do |t| %>
+  <% if t.category == "track" %>  #ここがポイント！ categoryカラムにcatと格納されているものだけを表示している！
+  <p>内容:<%= t.content %></p>
+  <% end %>
+<% end %>

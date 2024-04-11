@@ -1,0 +1,17 @@
+<%= form_for @tweet do |f| %>
+    <%= f.label :genre  %>
+    <%= f.select :genre, 
+    [["A", "A"], 
+    ["B", "B"], 
+    ["C", "C"]], include_blank: "選択して下さい" %>
+    
+    <%= f.label :about %>
+    <%= f.text_area :about, :size => "30x2" %>
+
+    <div class="field">
+    <%= f.label :movie %>
+    <%= f.file_field :movie %>
+    </div>
+
+    <%= f.submit "編集する" %>
+  <% end %>
