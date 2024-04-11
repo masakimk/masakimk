@@ -1,0 +1,21 @@
+databases:
+  - name: mk_oripuro_DB
+    databaseName: mk_oripuro_db
+    user: masakimk
+    region: singapore
+
+services:
+  - type: web
+    name: masakimk
+    env: ruby
+    region: singapore
+    plan: free
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mk_oripuro_DB
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
