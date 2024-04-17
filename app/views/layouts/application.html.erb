@@ -7,38 +7,45 @@
     <%= csp_meta_tag %>
 
     <script src="https://kit.fontawesome.com/88770ac7f5.js" crossorigin="anonymous"></script>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
+
   <body>
- <header>
-  <h1>MKオリプロ</h1>
-  <div class="header-list">
 
-  <%= link_to "トップページ", tweets_path %>
-
-  <%= link_to "新規投稿へ", new_tweet_path %>
-
-  <% if user_signed_in? %>
-  <%= link_to "マイページへ", user_path(current_user.id) %>
-  <% end %>  
-
-   <ul>
-    <% if user_signed_in? %>
-     <li><%= button_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+  <header class="header">
+  <div class="header-inner inner">
+    <h1 class="header-title"><%= link_to "MK-Original", root_path %></h1>
+    <nav class="header-nav">
+      <ul class="header-nav-list">
+        <li class="header-nav-item"><%= link_to "新規投稿へ", new_tweet_path, class: "header-nav-item-link" %></li>
+        <% if user_signed_in? %>
+    <li class="header-nav-item">
+     <%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: "header-nav-item-link" %></li>
     <% else %>
-     <li><%= link_to "新規登録", new_user_registration_path %></li>
-     <li><%= link_to "ログイン", new_user_session_path %></li>
-    <% end %>
-   </ul>
+    <li class="header-nav-item">
+    <%= link_to "新規登録", new_user_registration_path, class: "header-nav-item-link" %></li>
+    <li class="header-nav-item">
+     <%= link_to "ログイン", new_user_session_path, class: "header-nav-item-link" %></li>
+     
+     <% end %>
+       
+      </ul>
+    </nav>
   </div>
- </header>
- <main>
-  <%= yield %>
- </main>
+</header>
+
+
+
+
+
+
+<main>
+<%= yield %>
+</main>
+
 </body>
 
 </html>
-

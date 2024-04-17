@@ -1,3 +1,6 @@
+<body class=back>
+
+<div class="user1">
 <h1>マイページ</h1>
 <p>名前 : <%= @user.name %></p>
 <p>メールアドレス : <%= @user.email %></p>
@@ -9,21 +12,37 @@
   <%= link_to "編集する", edit_user_registration_path %>
 <% end %>
 
-<h2>ユーザーの投稿一覧</h2>
+
+<div class="usercomment">
+<h3>ユーザーの投稿一覧</h3>
+
 <% @user.tweets.each do |t| %>
-  <%= t.user.name %>
-  <%= t.genre %>
-  <%= t.about %>
+  <div class="tweet2">
+  <%= t.user.name %><br>
+  <%= t.genre %><br>
+  <%= t.about %><br>
   
   <%= t.created_at  %>
   <%= link_to t.movie_url.to_s do %>
     <%= (t.movie.to_s) %>
    <% end %>
   </p>
+
+  <%= link_to "詳細へ", tweet_path(t.id) %>
+
+      
+     <% if user_signed_in? && current_user.id == t.user_id %>
+      <%= link_to "編集する", edit_tweet_path(t.id) %>
+      <%= button_to "削除する", tweet_path(t.id), method: :delete %> 
+     <% end %>
+
+</div>
+
 <% end %>
 
+<div class="iine">
 <!-- 以下はいいね機能を実装している場合-->
-<h2>ユーザーがいいねした投稿一覧</h2>
+<h3>ユーザーがいいねした投稿一覧</h3>
 <% @user.liked_tweets.each do |t| %>
   <%= t.user.name %>
   <%= t.genre %>
@@ -36,6 +55,15 @@
    <% end %>
   </p>
 <% end %>
+</div>
 <!-- ここまで-->
 
+</div>
+<br>
 <%= link_to "Tweet一覧に戻る", tweets_path %>
+
+</div>
+<br>
+<br>
+
+</div>

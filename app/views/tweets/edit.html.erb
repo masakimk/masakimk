@@ -1,17 +1,30 @@
-<%= form_for @tweet do |f| %>
-    <%= f.label :genre  %>
-    <%= f.select :genre, 
-    [["A", "A"], 
-    ["B", "B"], 
-    ["C", "C"]], include_blank: "選択して下さい" %>
-    
-    <%= f.label :about %>
-    <%= f.text_area :about, :size => "30x2" %>
+<body class="back">
+<div class="tweetnew">
 
-    <div class="field">
-    <%= f.label :movie %>
-    <%= f.file_field :movie %>
-    </div>
+<h1>投稿編集ページ</h1>
+
+<%= form_for @tweet do |f| %>
+  <div class="field">
+  <%= f.label :何についての投稿？  %>
+  <%= f.select :genre, 
+  [["nice play!!", "nice play!!"], 
+  ["コース", "コース"], 
+  ["アイテム", "アイテム"], 
+  ["キャラ", "キャラ"]], include_blank: "選択して下さい" %>
+</div>
+
+<div class="field">
+  <%= f.label :コメント  %>
+  <%= f.text_area :about, :size => "30x2" %>
+</div>
+
+<div class="field">
+  <%= f.label :動画 %>
+  <%= f.file_field :movie %>
+</div><br>
 
     <%= f.submit "編集する" %>
   <% end %>
+
+  </div>
+</div>

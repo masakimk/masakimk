@@ -1,61 +1,61 @@
-<h1>マリオカート</h1>
+<div class="toppp">
+<div class="toppp2">
+<h1>マリオカートとは。。！</h1>
+<p>身近にいる人から世界の人たちまで、<br>
+最大１２人で対戦可能なレースゲーム<br>
+様々なコースをアイテムを使った駆け引きで走り、<br>
+相手を追い抜き１位を目指そう</p>
+</div>
+</div>
 
 
-<h3>投稿一覧</h3>
-<%= link_to "新規投稿へ", new_tweet_path %>
-
-<% if user_signed_in? %>
-  <%= link_to "マイページへ", user_path(current_user.id) %>
-  <% end %>  
+<div class=toppp3>
+<h1>投稿一覧</h1>
+<p>お気に入りのシーンを投稿して、周りの人と共有しよう</p>
+</div>
 
 <div class="tweets-container">
-
-
-
   <% @tweets.each do |t| %>
     <div class="tweet">
     <% if user_signed_in? %>
-            <%= link_to t.user.name, user_path(t.user.id) %>
-          <% else %>
-            <%= link_to t.user.name, new_user_session_path %>
-          <% end %>
-      <%= t.genre %>
-      <%= t.about %>
+    <%= link_to t.user.name, user_path(t.user.id) %>
+  <% else %>
+    <%= link_to t.user.name, new_user_session_path %>
+  <% end %><br>
       
+      <%= t.genre %><br>
+      <%= t.about %><br>
+      <p>
+<%= link_to t.movie_url.to_s do %>
+  <%= (t.movie.to_s) %>
+ <% end %>
+</p>
       <%= t.created_at  %>
-      <%= link_to t.movie_url.to_s do %>
-        <%= (t.movie.to_s) %>
-       <% end %>
-      </p>
+      
       <%= link_to "詳細へ", tweet_path(t.id) %>
 
       
      <% if user_signed_in? && current_user.id == t.user_id %>
       <%= link_to "編集する", edit_tweet_path(t.id) %>
       <%= button_to "削除する", tweet_path(t.id), method: :delete %> 
-     <% end %> 
-      
-    
-
-
-
-      <% if user_signed_in? %>
+     <% end %>
+     
+<% if user_signed_in? %>
       <% if current_user.already_liked?(t) %>
           <%= button_to tweet_like_path(id: t.id, tweet_id: t.id), method: :delete do %>
-            <i class="fas fa-heart"></i><%= t.likes.count %>
+            <i class="fas fa-heart" style="color:red;"></i><%= t.likes.count %>
           <% end %>
       <% else %>
           <%= button_to tweet_likes_path(id: t.id, tweet_id: t.id), method: :post do %>
-            <i class="fas fa-heart"></i><%= t.likes.count %>
+            <i class="fas fa-heart" style="color:red;"></i><%= t.likes.count %>
           <% end %>
       <% end %>
   <% else %>
-  <i class="fas fa-heart"></i><%= t.likes.count %>
+  <i class="fas fa-heart" style="color:red;"></i><%= t.likes.count %>
   <% end %>
 
-    
+  </div> 
   　
     
       <% end %>
     </div>
-  

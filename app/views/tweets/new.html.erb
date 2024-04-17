@@ -1,29 +1,44 @@
-<h1>MK投稿</h1>
-<h3>新規投稿ページ</h3>
+<body class="back">
+<div class="tweetnew">
+
+
+
+
+<h1>新規投稿ページ</h1>
+
 <%= form_for @tweet do |f| %>
 
 <div class="field">
-    <%= f.label :genre  %>
+    <%= f.label :何についての投稿？  %>
     <%= f.select :genre, 
-    [["コース", "コース"], 
+    [["nice play!!", "nice play!!"], 
+    ["コース", "コース"], 
     ["アイテム", "アイテム"], 
     ["キャラ", "キャラ"]], include_blank: "選択して下さい" %>
 </div>
 
 <div class="field">
-    <%= f.label :about  %>
+    <%= f.label :コメント  %>
     <%= f.text_area :about, :size => "30x2" %>
 </div>
 
 <div class="field">
-    <%= f.label :movie %>
+    <%= f.label :動画 %>
     <%= f.file_field :movie %>
 </div>
 
-<%= f.select :category, [["コース", "track"], ["アイテム", "item"], ["キャラクター", "charactar"]], include_blank: "どの投稿？" %>
+
+
+
 
 <%= f.submit "投稿する" %>
 
-<% end %>
+<% end %><br>
 
 <%= link_to "一覧に戻る", tweets_path %>
+
+</div>
+</div>
+
+
+

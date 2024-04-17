@@ -1,71 +1,99 @@
 
-<h3>Tweet詳細</h3>
+<body class="back">
+<div class="tweetnew">
+
+<h1>Tweet詳細</h1>
 <div class="tweet">
 
 <p id="notice"><%= notice %></p>
 
-<p>
+<% if user_signed_in? %>
+    <%= link_to @tweet.user.name, user_path(@tweet.user.id) %>
+  <% else %>
+    <%= link_to @tweet.user.name, new_user_session_path %>
+  <% end %>
+
+  <p><%= @tweet.genre %></p>
+  <p><%= @tweet.about %></p>
+
+  <p>
 <%= link_to @tweet.movie_url.to_s do %>
   <%= (@tweet.movie.to_s) %>
  <% end %>
 </p>
-
-
-
-
-
-  <p><%= @tweet.genre %></p>
-  <p><%= @tweet.about %></p>
   
   <p><%= @tweet.created_at %></p>
 
-  <%= link_to "編集する", edit_tweet_path(@tweet.id) %>
-<%= link_to '戻る', tweets_path %>
+  <% if user_signed_in? && current_user.id == @tweet.user_id %>
+      <%= link_to "編集する", edit_tweet_path(@tweet.id) %>
+      <%= button_to "削除する", tweet_path(@tweet.id), method: :delete %> 
+     <% end %>
+
   
    <% if user_signed_in? %>
       <% if current_user.already_liked?(@tweet) %>
         <%= button_to tweet_like_path(@tweet), method: :delete do %>
-          <i class="fas fa-heart"></i><%= @tweet.likes.count %>
+          <i class="fas fa-heart" style="color:red;"></i><%= @tweet.likes.count %>
         <% end %>
       <% else %>
-        <%= button_to tweet_likes_path(@tweet), method: :tweet do %>
-          <i class="fas fa-heart"></i><%= @tweet.likes.count %>
+        <%= button_to tweet_likes_path(@tweet), method: :post do %>
+          <i class="fas fa-heart" style="color:red;"></i><%= @tweet.likes.count %>
         <% end %>
       <% end %>
     <% else %>
-      <i class="fas fa-heart"></i><%= @tweet.likes.count %>
+      <i class="fas fa-heart" style="color:red;"></i><%= @tweet.likes.count %>
     <% end %>
 </div>
 
 
 
-<h2>いいねしたユーザー</h2>
-<% @tweet.liked_users.each do |user| %>
-  <li><%= user.email %></li>
-<% end %>
 
-
-
-<div class="comment-wrapper">
-  <p>コメント一覧</p>
+<div class="tweetshosai">
+  <h3>コメント一覧</h3>
   <% @comments.each do |c| %>
     <div>
-      <%= c.user.email unless c.user.blank? %>
-      <br>
-      <%= c.content %>
-    </div>
-      <br>
+    <% if user_signed_in? %>
+    <li><%= link_to @tweet.user.name, user_path(@tweet.user.id) %>
+  <% else %>
+    <%= link_to @tweet.user.name, new_user_session_path %>
   <% end %>
+      
+      <%= c.content %></li>
+    </div>
+      
+  <% end %><br>
+
 
   <% if user_signed_in? %>
     <%= form_with(model: [@tweet, @comment], local: true) do |f| %>
       <%= f.text_area :content %>
       <%= button_tag type: "submit" do %>
-        <i class="far fa-comments"></i> コメントする
+        <i class="far fa-comments" ></i> コメントする
       <% end %>
+      </div>
     <% end %>
+
+    <div class="tweetshosai">
+    <h3>いいねしたユーザー</h3>
+    <% @tweet.liked_users.each do |user| %>
+      <li><% if user_signed_in? %>
+    <%= link_to @tweet.user.name, user_path(@tweet.user.id) %>
+  <% else %>
+    <%= link_to @tweet.user.name, new_user_session_path %>
+  <% end %></li>
+
+      
+    </div>
+      
+    <% end %>
+
+<br><%= link_to "Tweet一覧に戻る", tweets_path %>
+
   <% end %>
 </div>
 
 
-<%= link_to "Tweet一覧に戻る", tweets_path %>
+
+
+
+

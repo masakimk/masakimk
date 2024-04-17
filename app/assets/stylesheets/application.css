@@ -15,3 +15,96 @@
  */
 
 
+ ul{list-style: none;}
+
+ .tweetnew{
+    text-align: center;
+ }
+
+ ul{list-style: none;}
+
+ .inner {
+    
+    margin: 0 auto;
+    padding: 0 40px;
+    box-sizing: content-box;
+    }
+    .header {
+    background: #f16767;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    }
+    .header-inner {
+    display: flex;
+    align-items: center;
+    }
+    .header-title a{
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    }
+    .header-nav {
+    margin-left: auto;
+    }
+    .header-nav-list {
+    display: flex;
+    }
+    .header-nav-item:not(:first-child){
+    margin-left: 40px;
+    }
+    .header-nav-item-link {
+    display: block;
+    color: #333;
+    height: 80px;
+    line-height: 80px;
+    }
+
+    header input{
+        background-color: transparent;
+        border: none;
+        }
+
+        header a{
+            text-decoration: none;
+            }
+
+            main{
+                margin-top: 80px;
+                }
+            
+                *{
+                    margin: 0;
+                    padding: 0;
+                    }
+
+
+
+ * インデックス
+
+
+
+
+ .post{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tweet{
+    width: 60vw;
+    border: solid black 2px;
+    text-align: center;
+    margin:  0 auto;
+    padding: 10px;
+}
+
+.tweet2{
+    width: 60vw;
+    border: solid black 2px;
+    text-align: center;
+    margin:  20px;
+    padding: 10px;
+    margin-left: 300px;
+}
