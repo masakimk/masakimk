@@ -39,7 +39,7 @@
       <%= link_to "編集する", edit_tweet_path(t.id) %>
       <%= button_to "削除する", tweet_path(t.id), method: :delete %> 
      <% end %>
-     
+
 <% if user_signed_in? %>
       <% if current_user.already_liked?(t) %>
           <%= button_to tweet_like_path(id: t.id, tweet_id: t.id), method: :delete do %>
@@ -56,6 +56,11 @@
 
   </div> 
   　
-    
+    <br>
+
       <% end %>
+      <br>
+      <br>
+      <br>
+      
     </div>
